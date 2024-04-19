@@ -19,7 +19,7 @@ const addProduct = async (req, res) => {
            
            const { name, description } = req.body;
   
-           const sellerIdenity = req.id;
+           const sellerIdentity = req.id;
             const photo = req.file.filename; 
   
               try {
@@ -27,7 +27,7 @@ const addProduct = async (req, res) => {
                     name,
                     description,
                     photo,
-                    sellerIdenity
+                    sellerIdentity
                 });
   
                 return res.status(201).json({ message: "Product created successfully", data: product });
@@ -82,7 +82,7 @@ const getProductByName = async (req, res) => {
 
 const getProductBySellerId = async (req,res)=>{
     try {
-        let products = await productsmodel.find({sellerIdenity:req.params.id}).populate('sellerIdentity');
+        let products = await productsmodel.find({sellerIdentity:req.params.id}).populate('sellerIdentity');
         return res.status(200).json({ message: "Products fetched successfully", data: products });
     } catch (error) {
         console.error(error);
@@ -94,7 +94,7 @@ const getProductBySellerId = async (req,res)=>{
 const getsellerPrducts = async (req, res) => {
 
     try {
-        let products = await productsmodel.find({sellerIdenity:req.id});
+        let products = await productsmodel.find({sellerIdentity:req.id});
         products.length > 0 && res.status(200).json({ data: products})
         products.length == 0 && res.status(200).json({ message: "Couldn't find any products for " + req.id })
 
@@ -106,13 +106,18 @@ const getsellerPrducts = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        let product = await productsmodel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        // Trim the id to remove any leading or trailing spaces
+        const trimmedId = req.params.id.trim();
+
+        // Use the trimmed id to find and update the product
+        let product = await productsmodel.findByIdAndUpdate(trimmedId, req.body, { new: true });
         return res.status(200).json({ message: "Product updated successfully", data: product });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Error updating product" });
     }
 };
+
 
 const deleteProduct = async (req, res) => {
     let { id } = req.params;

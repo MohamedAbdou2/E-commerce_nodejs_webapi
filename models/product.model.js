@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema(
       minlength: [5, "make description more than 5 characters"],
       maxlength: [100, "make description less than 20 characters"],
     },
-    sellerIdentiy: {
+    sellerIdentity: {
       type: mongoose.Schema.ObjectId,
       ref:'User',
       required: [true, "please select a seller"],

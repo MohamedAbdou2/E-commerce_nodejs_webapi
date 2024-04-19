@@ -5,7 +5,7 @@ let{promisify} = require('util')
 async function auth(req,res,next){
   let{authorization} = req.headers
   if(!authorization){
-    return res.status(401).json({masseg : "unauthorizatcated yom must login first"})
+    return res.status(401).json({massege : "unauthorized yom must login first"})
   }
 try{
 let decoded   =await  promisify(jwt.verify)(authorization,process.env.JWT_SECRET )
@@ -13,7 +13,7 @@ req.id = decoded.data.id
 req.role = decoded.data.role
 next()
 }catch(err){
-    return res.status(401).json({masseg : "unauthorizatcated "})
+    return res.status(401).json({massege : "unauthorized "})
 }
 }
  function restrictTo(...roles)
