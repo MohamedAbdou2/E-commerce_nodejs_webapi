@@ -26,7 +26,10 @@ const userSchema = mongoose.Schema(
              enum:['User','Seller'],
              default:'User'
         }
-    }
+    },
+     {
+        timestamps: true,
+      }
 );
 
 userSchema.pre('save',async function(next){
