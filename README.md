@@ -26,6 +26,7 @@ This repository contains the source code for an E-commerce web API built using N
 
 ```bash
 git clone https://github.com/MohamedAbdou2/E-commerce_nodejs_webapi.git
+```
 
 ## Install dependencies
 cd E-commerce_nodejs_webapi
