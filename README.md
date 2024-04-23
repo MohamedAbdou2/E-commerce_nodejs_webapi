@@ -29,16 +29,19 @@ git clone https://github.com/MohamedAbdou2/E-commerce_nodejs_webapi.git
 ```
 
 ## Install dependencies
+```bash
 cd E-commerce_nodejs_webapi
 npm install
+```
 
 ## Configure environment variables:
 Create a .env file in the root directory
 Define environment variables like PORT, DB_URI, JWT_SECRET, etc.
 
 ## Start the server
+```bash
 npm start
-
+```
 ## Usage
 
 Once the server is running, you can access the API endpoints using tools like Postman or by integrating them into your frontend application.
